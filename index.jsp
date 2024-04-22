@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="sd">
+<link rel="stylesheet" href="style/test.css">
 </head>
 <body>
 <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
