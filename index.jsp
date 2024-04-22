@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+  <style id="_style">
     @layer __play_base__{
   /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
