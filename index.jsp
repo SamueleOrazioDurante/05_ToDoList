@@ -3,9 +3,8 @@ pageEncoding="UTF-8"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
 <% 
-  //controllo se l`utente è loggato, in caso contrario lo mando nella pagine di login 
-  if(request.getSession(false) == null){
-    out.print("ciao");
+  //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagine di login 
+  if((request.getSession(false) == null)){
     response.sendRedirect("pages/login.jsp");
   }  
 %>
