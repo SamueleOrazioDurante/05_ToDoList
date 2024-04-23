@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 import java.io.IOException;
 import javax.servlet.ServletConfig;
@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import model.LoginBean;
-//import model.ToDoList;
-//import model.ToDoListBean;
+import model.LoginBean;
+
 
 /**
  * Servlet implementation class login
@@ -19,10 +18,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//bean usato per accedere ai dati utili per l'autenticazione
-    //private LoginBean logIn;  
-    //bean usato per l'accesso ai dati della todoList
-    //private ToDoList todoList;
+	//bean usato per accedere ai dati dell`autenticazione
+    private LoginBean login;  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,8 +32,8 @@ public class login extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// istanzio il Bean di LogIn
-		//logIn = new LoginBean();
+		// istanzio il bean di login
+		login = new LoginBean();
 	}
 
 	/**
@@ -48,7 +45,7 @@ public class login extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		//utilizzo il bean login per controllare l`esistenza dell`utente nel database
-		if(1==1)//logIn.checkUser(username, password)==2)
+		if(login.checkUser(username, password))
 		{
 			//utente esiste, quindi creo la sessione e lo porto alla pagina principale
 			
@@ -61,14 +58,6 @@ public class login extends HttpServlet {
 			//creo la sessione
 			session = request.getSession();
 			session.setAttribute("username", username);
-            
-            /*
-			//istanzio il bean ToDoList
-			todoList = new ToDoListBean();
-			//setto l'user
-			todoList.setLoggedUser(user);
-			//aggiungo il bean come parametro della request
-			request.setAttribute("todoList", todoList);*/
 
 			//forward della richiesta alla pagina jsp principale
 			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
