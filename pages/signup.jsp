@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="h-full bg-white">
 <head>
-<link rel="stylesheet" href="style/signup.css">
+<link rel="stylesheet" href="style/login.css">
 </head>
 <body class="h-full">
 <section class="bg-gray-50 dark:bg-gray-900">
