@@ -27,7 +27,7 @@
             <input type="password" name="password" id="password" placeholder="********" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" required="" />
           </div>
           <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Log in</button>
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">Hai già un account? <a href="login.jsp" class="text-primary-600 dark:text-white font-medium hover:underline">Accedi</a></p>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">Hai gia` un account? <a href="login.jsp" class="text-primary-600 dark:text-white font-medium hover:underline">Accedi</a></p>
         </form>
       </div>
     </div>
