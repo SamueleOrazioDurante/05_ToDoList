@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletConfig;
@@ -14,10 +14,10 @@ import model.ToDoList;
 import model.ToDoListBean;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class login
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/login")
+public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati utili per l'autenticazione
     private LoginBean logIn;  
@@ -62,14 +62,15 @@ public class LoginServlet extends HttpServlet {
 			session = request.getSession();
 			session.setAttribute("username", username);
             
-            
+            /*
 			//istanzio il bean ToDoList
 			todoList = new ToDoListBean();
 			//setto l'user
 			todoList.setLoggedUser(user);
 			//aggiungo il bean come parametro della request
-			request.setAttribute("todoList", todoList);
-			//forward della richiesta alla pagina jsp selezionata
+			request.setAttribute("todoList", todoList);*/
+
+			//forward della richiesta alla pagina jsp principale
 			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 		else
