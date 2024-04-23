@@ -4,12 +4,14 @@ pageEncoding="UTF-8"%>
 
 <% 
   //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagine di login 
-  if((request.getSession(false) == null)){
+  if((session.getAttribute("username")==null)){
     response.sendRedirect("pages/login.jsp");
   }  
 %>
 
 <%="Current Date="+ new java.util.Date()
+%>
+<%="Current Date="+ session.getAttribute("username")
 %>
 
 <!DOCTYPE html>
@@ -19,7 +21,8 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     
-    <a href="pages/login.jsp"> Test </a>
-    <a href="pages/signup.jsp"> Test2 </a>
+    <a href="pages/login.jsp"> Login </a>
+    <a href="pages/signup.jsp"> Signup </a>
+    <a href="pages/logout.jsp"> Logout </a>
   </body>
 </html>

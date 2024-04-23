@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> 
 
+<% 
+  //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagine di login 
+  if((session.getAttribute("username")!=null)){
+    response.sendRedirect("../index.jsp");
+  }  
+%>
+
 <!DOCTYPE html>
 <html class="h-full bg-white">
 <head>
+<title> Noirell </title>
+<link rel="icon" href="img/Logo.png" type="image/png" />
 <link rel="stylesheet" href="style/login.css">
 </head>
 <body class="h-full">
 <section class="bg-gray-50 dark:bg-gray-900">
   <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
     <a href="#" class="mb-6 flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
-      <img class="mr-2 h-8 w-8" src="https://static.gamberorosso.it/media/k2/items/src/09b0e609e1ff4f27f946f49926d89c21.jpg" alt="logo" />
-      Nome APP
+       <img class="mr-2" src="img/Logo.png" alt="logo" style="width: 14rem; height: 14rem;"/>
     </a>
     <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800">
       <div class="space-y-4 p-6 sm:p-8 md:space-y-6">

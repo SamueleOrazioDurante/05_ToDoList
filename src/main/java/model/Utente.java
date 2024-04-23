@@ -12,6 +12,12 @@ public class Utente {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public Utente(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 	public String getUsername() {
 		return username;

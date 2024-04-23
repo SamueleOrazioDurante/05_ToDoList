@@ -3,6 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DAO {
@@ -41,6 +42,26 @@ public class DAO {
 		}
 		return check;
     }
+	
+	public boolean checkUser(Utente user){
+		
+		String password = this.encryptPass(user.getPassword());
+		String query = "SELECT username FROM utente WHERE (username='"+user.getUsername()+"' OR email='"+user.getUsername()+"') AND password='"+password+"'";
+		
+		Boolean check = false;
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				check = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
 
 	public String encryptPass(String password) {
         try {
