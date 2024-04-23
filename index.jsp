@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> 
 
-<%="sdf";
-  //controllo se l`utente è loggato, in caso contrario lo mando nella pagine di login 
-  if(request.getSession(false) == null) {
-    response.sendRedirect("pages/login.jsp");
-  }  
+
+<%
+Date d = new Date();
+System.out.println("Current Date="+d);
 %>
 
 <!DOCTYPE html>
