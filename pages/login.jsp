@@ -13,7 +13,7 @@
     <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800">
       <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Accedi al tuo account</h1>
-        <form class="space-y-4 md:space-y-6" action="#">
+        <form class="space-y-4 md:space-y-6" action="https://todolist.israiken.xyz/05_ToDoList/login" method="POST">
           <div>
             <label for="username" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Username</label>
             <input type="username" name="username" id="username" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" placeholder="mario.rossi@gmail.com" required="" />
