@@ -835,6 +835,6 @@ video {
   </div>
 </section>
 <a href="pages/login.jsp"> Test </a>
-
+<a href="pages/signup.jsp"> Test2 </a>
 </body>
 </html>
