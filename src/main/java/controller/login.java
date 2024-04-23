@@ -48,7 +48,7 @@ public class login extends HttpServlet {
 		if(login.checkUser(username, password))
 		{
 			//utente esiste, quindi creo la sessione e lo porto alla pagina principale
-			
+			System.out.println("dfs");
 			HttpSession session = request.getSession(false);
 			if(session!=null)
 			{
@@ -65,7 +65,7 @@ public class login extends HttpServlet {
 		else
 		{
 			//lancio un eccezione in caso di errore che verrà gestita dalla pagina ErrorPage.jsp
-			throw new ServletException("Utente non autenticato");
+			throw new ServletException("login");
 		}
 	}
 

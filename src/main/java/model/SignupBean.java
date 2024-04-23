@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginBean implements java.io.Serializable{
+public class SignupBean implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Connection conn;
 
-	public LoginBean() {
+	public SignupBean() {
 		super();
 		
 		//connessione al database col driver JDBC
@@ -28,7 +28,7 @@ public class LoginBean implements java.io.Serializable{
 		
 	}
 	
-	public boolean checkUser(String username, String password)
+	public boolean addUser(String username, String email, String password)
 	{
 		String query = "SELECT username FROM utente WHERE (username='"+username+"' OR email='"+username+"') AND password='"+password+"'";
 		
