@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-white">
 <head>
 <link rel="stylesheet" href="style/login.css">
 </head>
-<body>
+<body class="h-full">
 <section class="bg-gray-50 dark:bg-gray-900">
   <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
     <a href="#" class="mb-6 flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
