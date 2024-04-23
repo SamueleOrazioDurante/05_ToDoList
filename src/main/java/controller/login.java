@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginBean;
-
+import model.UsersLists;
 
 /**
  * Servlet implementation class login
@@ -57,7 +57,11 @@ public class login extends HttpServlet {
 			//creo la sessione
 			session = request.getSession();
 			session.setAttribute("username", username);
-
+			
+			//creo l`array con tutte le liste dell`utente
+			UsersLists usersLists = login.fetchUsersLists(username);
+			request.setAttribute("usersLists", usersLists);
+			System.out.println(usersLists.toString());
 			//forward della richiesta alla pagina jsp principale
 			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}

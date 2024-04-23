@@ -20,4 +20,8 @@ public class LoginBean implements java.io.Serializable{
 		return check;
 	}
 	
+	public UsersLists fetchUsersLists(String username){
+		return theDAO.fetchUsersLists(username);
+	}
+	
 }

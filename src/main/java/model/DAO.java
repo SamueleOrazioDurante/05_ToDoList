@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DAO {
 	
@@ -23,23 +24,29 @@ public class DAO {
 	
 	public boolean addUser(Utente user) {
 		
-		Data data = new Data();
-		String password = this.encryptPass(user.getPassword());
-	
-		String query = "INSERT INTO `utente`(`username`, `email`, `password`, `data_iscrizione`) VALUES ('"+user.getUsername()+"','"+user.getEmail()+"','"+password+"','"+data.getData()+"')";
+		Boolean check = false;
 		
-		boolean check = false;
-		try {
-			int res = conn.createStatement().executeUpdate(query);
-			if(res!=0)
-			{
-				check = true;
-			}
+		if(this.checkDBCollision(user)){
+		
+			Data data = new Data();
+			String password = this.encryptPass(user.getPassword());
+		
+			String query = "INSERT INTO `utente`(`username`, `email`, `password`, `data_iscrizione`) VALUES ('"+user.getUsername()+"','"+user.getEmail()+"','"+password+"','"+data.getData()+"')";
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			try {
+				int res = conn.createStatement().executeUpdate(query);
+				if(res!=0)
+				{
+					check = true;
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 		return check;
     }
 	
@@ -89,5 +96,104 @@ public class DAO {
 		
 		//verifico se la password inserita coincide con l`hash della password
 		return this.encryptPass(password).equals(hash);
+	}
+	
+	public boolean checkDBCollision(Utente user) {
+		
+		String query = "SELECT username FROM utente WHERE username='"+user.getUsername()+"'";
+		
+		Boolean check = true;
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				check = false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+		
+	}
+	
+	public int findUserID(String username) {
+		
+		String query = "SELECT id_utente FROM utente WHERE username='"+username+"'";
+		
+		int id = -1;
+		
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				id = res.getInt("id_utente");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public ArrayList<Todo> fetchTodos(int id){
+		
+		ArrayList<Todo> todos = new ArrayList<Todo>();
+		
+		String query = "SELECT `id_todo`,`titolo_todo`,`descrizione_todo`,`isDone` FROM `todo` WHERE `id_lista` = '"+id+"'";
+		
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			while(res.next())
+			{
+				//prendo i parametri datomi dalla query al DB
+				int id_todo = res.getInt("id_todo");
+				String titolo = res.getString("titolo_todo");
+				String descrizione = res.getString("descrizione_todo");
+				Boolean isDone = res.getBoolean("isDone");
+				//creo un nuovo oggetto todo
+				Todo todo = new Todo(id_todo,titolo,descrizione,isDone);
+				//lo aggiungo all`arraylist
+				todos.add(todo);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return todos;
+	}
+	
+	public UsersLists fetchUsersLists(String username){
+		
+		UsersLists usersLists = new UsersLists();
+		 
+		int id = this.findUserID(username);
+		String query = "SELECT `id_lista`,`titolo_lista` FROM `lista` WHERE `id_utente`='"+id+"'";
+		
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			while(res.next())
+			{
+				//prendo i parametri datomi dalla query al DB
+				int id_lista = res.getInt("id_lista");
+				String titolo = res.getString("titolo_lista");
+				//richiamo la funzione per ricercare tutte le todos appartenenti a quella lista
+				ArrayList<Todo> todos = this.fetchTodos(id_lista);
+				//creo un nuovo oggetto lista
+				Lista lista = new Lista(id_lista,titolo,todos);
+				//lo aggiungo alla usersLists
+				usersLists.addUsersLists(lista);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return usersLists;
 	}
 }
