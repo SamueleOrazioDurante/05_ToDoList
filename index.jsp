@@ -1,13 +1,14 @@
-<!--
-  Welcome to Tailwind Play, the official Tailwind CSS playground!
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-  Everything here works just like it does when you're running Tailwind locally
-  with a real build pipeline. You can customize your config file, use features
-  like `@apply`, or even add third-party plugins.
+<%
+  //controllo se l`utente è loggato, in caso contrario lo mando nella pagine di login
+   if (request.getSession(false) == null) {
+      response.sendRedirect("pages/login.jsp");
+      
+   }
+%>
 
-  Feel free to play with this example if you're just learning, or trash it and
-  start from scratch if you know enough to be dangerous. Have fun!
--->
 <!DOCTYPE html>
 <html>
 <head>
