@@ -20,7 +20,7 @@
           </div>
           <div>
             <label for="password" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" required="" />
+            <input type="password" name="password" id="password" placeholder="********" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" required="" />
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-start">
@@ -31,7 +31,7 @@
                 <label for="remember" class="text-gray-500 dark:text-gray-300">Ricordami</label>
               </div>
             </div>
-            <a href="#" class="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline">Password dimenticata?</a>
+            <a href="#" class="text-primary-600 dark:text-white text-sm font-medium hover:underline">Password dimenticata?</a>
           </div>
           <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Sign in</button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">Non hai ancora un account? <a href="#" class="text-primary-600 dark:text-primary-500 font-medium hover:underline">Iscriviti</a></p>
