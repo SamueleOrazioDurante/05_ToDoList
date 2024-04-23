@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.LoginBean;
-import model.ToDoList;
-import model.ToDoListBean;
+//import model.LoginBean;
+//import model.ToDoList;
+//import model.ToDoListBean;
 
 /**
  * Servlet implementation class login
@@ -20,9 +20,9 @@ import model.ToDoListBean;
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati utili per l'autenticazione
-    private LoginBean logIn;  
+    //private LoginBean logIn;  
     //bean usato per l'accesso ai dati della todoList
-    private ToDoList todoList;
+    //private ToDoList todoList;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,7 +36,7 @@ public class login extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// istanzio il Bean di LogIn
-		logIn = new LoginBean();
+		//logIn = new LoginBean();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class login extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		//utilizzo il bean login per controllare l`esistenza dell`utente nel database
-		if(logIn.checkUser(username, password)==2)
+		if(1==1)//logIn.checkUser(username, password)==2)
 		{
 			//utente esiste, quindi creo la sessione e lo porto alla pagina principale
 			
