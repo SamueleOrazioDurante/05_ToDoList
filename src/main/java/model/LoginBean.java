@@ -14,17 +14,7 @@ public class LoginBean implements java.io.Serializable{
 	public LoginBean() {
 		super();
 		
-		//connessione al database col driver JDBC
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn= DriverManager.getConnection("jdbc:mysql://azure.israiken.xyz:3306/TPSITToDoList", "admin", "admin");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 	}
 	

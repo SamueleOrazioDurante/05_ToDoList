@@ -17,6 +17,14 @@
   	<servlet-name>login</servlet-name>
   	<url-pattern>/servlet/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>signup</servlet-name>
+  	<servlet-class>signup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>signup</servlet-name>
+  	<url-pattern>/servlet/signup</url-pattern>
+  </servlet-mapping>
     <error-page>
   	<exception-type>javax.servlet.ServletException</exception-type>
   	<location>/ErrorPage.jsp</location>
