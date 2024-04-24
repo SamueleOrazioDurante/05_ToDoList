@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DAO {
 	
 	private Connection conn;
+	SMTP mail;
 
 	public DAO() {
 		//connessione al database col driver JDBC
@@ -20,6 +21,8 @@ public class DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		mail = new SMTP();
 	}
 	
 	public boolean addUser(Utente user) {
@@ -46,7 +49,6 @@ public class DAO {
 				e.printStackTrace();
 			}
 		}
-		
 		return check;
     }
 	

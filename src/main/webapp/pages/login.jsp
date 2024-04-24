@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> 
+<%@ page import="model.SMTP" %>
 
 <% 
   //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagine di login 
@@ -36,7 +37,10 @@ pageEncoding="UTF-8"%>
 	    <span class="font-medium">Registrazione effettuata con successo!</span> Procedi con il login.
 	  </div>
 	</div>
-	
+	<% 
+		SMTP mail = new SMTP();
+		mail.sendEmail(request.getParameter("reg"), "Benvenuto nella Noirell`s family!", "Grazie per aver effettuato la registrazione presso il nostro servizio."); 
+	%>
 	<% } %>
 
   <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">

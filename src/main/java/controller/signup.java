@@ -49,7 +49,7 @@ public class signup extends HttpServlet {
 		{
 			//ALERT REGISTRAZION ESEGUITA CON SUCCESSO
 			//rimando alla pagina jsp login
-			response.sendRedirect("pages/login.jsp?reg=1");
+			response.sendRedirect("pages/login.jsp?reg="+email);
 		}
 		else
 		{
