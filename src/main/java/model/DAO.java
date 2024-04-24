@@ -15,7 +15,7 @@ public class DAO {
 		//connessione al database col driver JDBC
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn= DriverManager.getConnection("jdbc:mysql://azure.israiken.xyz:3306/TPSITToDoList", "admin", "admin");
+			conn= DriverManager.getConnection("jdbc:mysql://192.168.1.80:3306/TPSITToDoList", "admin", "admin");
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
