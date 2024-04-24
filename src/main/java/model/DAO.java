@@ -102,7 +102,7 @@ public class DAO {
 	
 	public boolean checkDBCollision(Utente user) {
 		
-		String query = "SELECT username FROM utente WHERE username='"+user.getUsername()+"'";
+		String query = "SELECT username FROM utente WHERE (username='"+user.getUsername()+"' OR email='"+user.getEmail()+"')";
 		
 		Boolean check = true;
 		try {
@@ -197,5 +197,24 @@ public class DAO {
 		}
 
 		return usersLists;
+	}
+	
+public boolean checkEmail(Utente user){
+		
+		String query = "SELECT username FROM utente WHERE email='"+user.getEmail()+"'";
+		
+		Boolean check = false;
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				check = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
 	}
 }

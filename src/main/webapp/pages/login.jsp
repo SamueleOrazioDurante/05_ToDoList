@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="model.SMTP" %>
 
 <% 
-  //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagine di login 
+	//controllo se l`utente non è loggato (quindi sessione non attiva), in caso contrario lo mando nella pagina di index
   if((session.getAttribute("username")!=null)){
     response.sendRedirect("../index.jsp");
   }  
@@ -61,14 +61,14 @@ pageEncoding="UTF-8"%>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-start">
-              <div class="flex h-5 items-center">
+              <!-- <div class="flex h-5 items-center">
                 <input id="ricorda" aria-describedby="ricorda" type="checkbox" class="focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800" />
-              </div>
+              </div> -->
               <div class="ml-3 text-sm">
-                <label for="remember" class="text-gray-500 dark:text-gray-300">Ricordami</label>
+                <label for="remember" class="text-gray-500 dark:text-gray-300"></label>
               </div>
             </div>
-            <a href="#" class="text-primary-600 dark:text-white text-sm font-medium hover:underline">Password dimenticata?</a>
+            <a href="forgotPassword.jsp" class="text-primary-600 dark:text-white text-sm font-medium hover:underline">Password dimenticata?</a>
           </div>
           <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Log in</button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">Non hai ancora un account? <a href="signup.jsp" class="text-primary-600 dark:text-white font-medium hover:underline">Iscriviti</a></p>
