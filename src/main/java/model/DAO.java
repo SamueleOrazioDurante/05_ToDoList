@@ -217,4 +217,24 @@ public boolean checkEmail(Utente user){
 		}
 		return check;
 	}
+
+	public boolean updatePassword(Utente user) {
+		
+		Boolean check = false;
+		String password = this.encryptPass(user.getPassword());
+		String query = "UPDATE `utente` SET `password`='"+password+"' WHERE `email` = '"+user.getEmail()+"'";
+		
+		try {
+			int res = conn.createStatement().executeUpdate(query);
+			if(res!=0)
+			{
+				check = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
 }

@@ -23,6 +23,12 @@ public class Utente {
 		super();
 		this.email = email;
 	}
+	
+	public Utente(String email,String password,Boolean c) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	public String getUsername() {
 		return username;

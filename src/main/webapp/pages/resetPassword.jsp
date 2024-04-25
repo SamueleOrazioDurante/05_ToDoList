@@ -6,15 +6,12 @@ pageEncoding="UTF-8"%>
   if((session.getAttribute("username")!=null)){
     response.sendRedirect("../index.jsp");
   }  
-
 //controllo se l`utente ha richiesto un reset della password con un`email valida (quindi sessione attiva), in caso contrario lo mando nella pagina di login 
-  if((session.getAttribute("codiceOTP")==null)){
+  if((session.getAttribute("codiceOTP")==null) || (session.getAttribute("resetPassword")!="1") || (session.getAttribute("email")==null)){
     response.sendRedirect("../index.jsp");
   }
 %>
-<%=session.getAttribute("resetPassword")%> //CONTROLLARE CHE L`ATTRIBUTO ESISTA (CON VALORE 1) PER GARANTIRE ACCESSO SOLO A CHI È AUTORIZZATO
-<%=session.getAttribute("email")%> //DA CAMBIARE NEL PROSPETTO DELL`INPUT //DA FARE LA SERVLET DI RESETPASSWORD CON LA QUERY DI UPDATE DENTRO IL DAO (INVALIDARE TUTTE LE SESSIONE PER EVITARE CONFLITTI FUTURI TRA DATI)
-<!DOCTYPE html>
+
 <html class="h-full bg-white">
 <head>
 <title> Noirell </title>
@@ -22,6 +19,16 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="style/login.css">
 </head>
 <body class="h-full">
+
+	<div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+	  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+	    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+	  </svg>
+	  <span class="sr-only">Info</span>
+	  <div>
+	    <span class="font-medium">Ottimo!</span> Inserisci la tua nuova password e il gioco è fatto.
+	  </div>
+	</div>
 	
 	<section class="bg-gray-50 dark:bg-gray-900">
   <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
@@ -29,9 +36,10 @@ pageEncoding="UTF-8"%>
       <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Reimposta la tua password</h1>
         <form class="space-y-4 md:space-y-6" action="../resetPassword" method="POST">
-        	<div>
-            <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white only-read">Indirizzo e-mail</label>
-            <input type="email" name="email" id="email" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" disabled value="<%=session.getAttribute("email") %>" />
+        <div>
+            <label for="email1" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white only-read">Indirizzo e-mail</label>
+            <input type="email" name="email1" id="email1" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" disabled value="<%=session.getAttribute("email") %>" />
+            <input type="email" name="email" id="email" hidden value="<%=session.getAttribute("email") %>" />
           </div>
           <div>
             <label for="password" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Password</label>

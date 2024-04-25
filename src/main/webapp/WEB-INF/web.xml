@@ -25,6 +25,22 @@
   	<servlet-name>signup</servlet-name>
   	<url-pattern>/servlet/signup</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>resetPassword</servlet-name>
+  	<servlet-class>resetPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>resetPassword</servlet-name>
+  	<url-pattern>/servlet/resetPassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>forgotPassword</servlet-name>
+  	<servlet-class>forgotPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>forgotPassword</servlet-name>
+  	<url-pattern>/servlet/forgotPassword</url-pattern>
+  </servlet-mapping>
     <error-page>
   	<exception-type>javax.servlet.ServletException</exception-type>
   	<location>/ErrorPage.jsp</location>
