@@ -237,4 +237,39 @@ public boolean checkEmail(Utente user){
 		}
 		return check;
 	}
+	
+	public int addLista(Lista lista, Utente user) {
+		
+		int id = -1;
+		int id_utente = this.findUserID(user.getUsername());
+		String titolo = lista.getTitolo();
+		Data data = new Data();
+		
+		String query = "INSERT INTO `lista`(`id_utente`, `titolo_lista`, `data_diCreazione`) VALUES ('"+id_utente+"','"+titolo+"','"+data.getData()+"')";
+		
+		try {
+			int res = conn.createStatement().executeUpdate(query);
+			if(res!=0)
+			{
+				query = "SELECT `id_lista` FROM `lista` WHERE `id_utente`='"+id_utente+"' AND `titolo_lista` = '"+titolo+"' AND `data_diCreazione` = '"+data.getData()+"'";
+				try {
+					ResultSet ress = conn.createStatement().executeQuery(query);
+					if(ress.next())
+					{
+						id = ress.getInt("id_lista");
+					}
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
 }

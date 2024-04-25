@@ -24,6 +24,11 @@ public class Utente {
 		this.email = email;
 	}
 	
+	public Utente(String username,Boolean c) {
+		super();
+		this.username = username;
+	}
+	
 	public Utente(String email,String password,Boolean c) {
 		super();
 		this.email = email;

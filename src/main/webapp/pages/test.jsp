@@ -139,29 +139,58 @@
 
 <!--INIZIO PARTE LISTE  -->
     <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        <div
-          class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
-      </div>
-      <div
-        class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-      ></div>
-      <div
-        class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-      ></div>
+      <button class="rounded-md bg-rose-500 px-4 py-2 text-white transition hover:bg-rose-700" onclick="openModal('modelConfirm')">Click to Open modal</button>
+
+<div id="modelConfirm" class="fixed inset-0 z-50 hidden h-full w-full overflow-y-auto bg-gray-900 bg-opacity-60 px-4">
+  <div class="relative top-40 mx-auto max-w-md rounded-md bg-white shadow-xl">
+    <div class="flex justify-end p-2">
+      <button onclick="closeModal('modelConfirm')" type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="p-6 pt-0 text-center">
+      <svg class="mx-auto h-20 w-20 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <h3 class="mb-6 mt-5 text-xl font-normal text-gray-500">Are you sure you want to delete this user?</h3>
+      <a href="#" onclick="closeModal('modelConfirm')" class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-3 py-2.5 text-center text-base font-medium text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300"> Yes, I'm sure </a>
+      <a href="#" onclick="closeModal('modelConfirm')" class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200" data-modal-toggle="delete-user-modal"> No, cancel </a>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.openModal = function(modalId) {
+      document.getElementById(modalId).style.display = 'block'
+      document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
+  }
+
+  window.closeModal = function(modalId) {
+      document.getElementById(modalId).style.display = 'none'
+      document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+  }
+
+  // Close all modals when press ESC
+  document.onkeydown = function(event) {
+      event = event || window.event;
+      if (event.keyCode === 27) {
+          document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+          let modals = document.getElementsByClassName('modal');
+          Array.prototype.slice.call(modals).forEach(i => {
+              i.style.display = 'none'
+          })
+      }
+  };
+</script>
+
    
     </main>
   </div>
+  
+  
 
 </body>
 </html>

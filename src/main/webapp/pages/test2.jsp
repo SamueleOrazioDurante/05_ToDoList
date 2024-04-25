@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.io.*,java.util.*"%>
-<%@ page import = "model.UsersLists,model.Lista"%>
+<%@ page import = "model.UsersLists,model.Lista,model.Todo"%>
 
 <% 
   //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagina di login 
@@ -15,8 +15,8 @@
 <head>
 <meta charset="UTF-8">
 <title> Noirell </title>
-<link rel="icon" href="pages/img/Logo.png" type="image/png" />
-<link rel="stylesheet" href="pages/style/index.css">
+<link rel="icon" href="img/Logo.png" type="image/png" />
+<link rel="stylesheet" href="style/index.css">
 </head>
 <body class="h-full">
 
@@ -25,20 +25,20 @@
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
               <!-- INIZIO NAV BAR CON LOGO E NOME APPLICAAZIONE -->
-          <a href="#" class="flex items-center justify-between mr-4">
+          <a href="../index.jsp" class="flex items-center justify-between mr-4">
             <img
-              src="pages/img/Logo.png"
+              src="img/Logo.png"
               class="mr-3 h-8"
               style="width: 4rem; height: 4rem;"
             />
           </a>
         </div>
         
-          	<a href="pages/account.jsp" class="flex mr-4">
+          	<a href="account.jsp" class="flex mr-4">
               <!-- PROFILO UTENTE ( ICONA IN ALTO A DX ) -->
             <img
               class="w-8 h-8 rounded-full"
-              src="pages/img/noUserImage.png"
+              src="img/noUserImage.png"
               alt="user photo"
             />
             </a>
@@ -61,7 +61,7 @@
         <!-- INIZIO SIDEBAR LISTA -->
           <li>     
             <a
-              href="#"
+              href="../index.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
              <!-- IMMAGINE LISTA -->
@@ -86,7 +86,7 @@
           <!-- INIZIO SIDEBAR ACCOUNT -->
           <li>     
             <a
-              href="pages/account.jsp"
+              href="account.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
             
@@ -113,7 +113,7 @@
           <!-- INIZIO SIDEBAR LOGOUT -->
           <li>     
             <a
-              href="pages/logout.jsp"
+              href="logout.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
             
@@ -143,51 +143,29 @@
 
 <!--INIZIO PARTE LISTE  -->
     <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900"><br>
-    
       <div class="grid grid-cols-4 gap-4">
       
       	<%
-      		if(request.getAttribute("usersLists")!=null){
-      			UsersLists usersLists = (UsersLists)request.getAttribute("usersLists");
+      		if(request.getAttribute("liste")!=null){
+      			UsersLists usersLists = (UsersLists)request.getAttribute("liste");
       			ArrayList<Lista> liste = usersLists.getAllUsersLists();
       			
-      			for(int i = 0;i<liste.size();i++){		
+      			for(int i = 0;i<liste.size();i++){
+      				
       	
       	
       	%>
-        <a href="pages/lista.jsp?id=<%=liste.get(i).getId() %>" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="lista.jsp?id=<%=liste.get(i).getId() %>" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <img class="w-96" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="ListsImage" /><br>
         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%=liste.get(i).getTitolo() %></h5>
         </a>
         
-    	<% }}%>
+    	<% }}else{ out.print("non ghe na sega");} %>
 
-        <details class="open">
-            <!-- Parte visibile (bottone) -->
-            <summary 
-                <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800  dark:border-gray-700 dark:hover:bg-gray-700">
-                  <img class="w-96" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="ListsImage" /><br>
-                  <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Crea una nuova lista 😊</h5>
-                </a>
-            </summary>
-
-            <!-- Parte invisibile -->
-            <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800 my-5 mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  inset-0 rounded-2xl w-[40%] h-[27%]">
-              <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Crea una nuova lista</h1>
-                <form class="space-y-4 md:space-y-6" action="addLista" method="POST">
-                  <div>
-                    <label for="titolo" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Titolo</label>
-                    <input type="text" name="titolo" id="titolo" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" placeholder="Lista1" required="" />
-                  </div>
-                  <div class="grid grid-cols-2 gap-4">
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Crea</button>
-                    <button onclick="document.querySelector('details').removeAttribute('open')" type="button" class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Chiudi</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-        </details>
+        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <img class="w-96" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="ListsImage" /><br>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Crea una nuova lista 😊</h5>
+        </a>
       </div>
     </main>
   </div>
