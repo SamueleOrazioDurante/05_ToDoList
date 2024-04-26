@@ -333,7 +333,6 @@ public boolean checkEmail(Utente user){
 	public boolean deleteTodo(int id_todo,Utente user, Boolean isExternal) {
 		
 		Boolean check = false;
-		System.out.println(id_todo);
 		String query;
 		
 		if(isExternal) {
@@ -353,7 +352,6 @@ public boolean checkEmail(Utente user){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		return check;
 	}
