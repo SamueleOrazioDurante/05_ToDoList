@@ -49,6 +49,22 @@
   	<servlet-name>addLista</servlet-name>
   	<url-pattern>/servlet/addLista</url-pattern>
   </servlet-mapping>
+   <servlet>
+  	<servlet-name>addTodo</servlet-name>
+  	<servlet-class>addTodo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>addTodo</servlet-name>
+  	<url-pattern>/servlet/addTodo</url-pattern>
+  </servlet-mapping>
+     <servlet>
+  	<servlet-name>deleteLista</servlet-name>
+  	<servlet-class>deleteLista</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>deleteLista</servlet-name>
+  	<url-pattern>/servlet/deleteLista</url-pattern>
+  </servlet-mapping>
     <error-page>
   	<exception-type>javax.servlet.ServletException</exception-type>
   	<location>/ErrorPage.jsp</location>

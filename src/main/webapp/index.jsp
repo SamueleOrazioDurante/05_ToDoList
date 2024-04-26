@@ -147,8 +147,8 @@
       <div class="grid grid-cols-4 gap-4">
       
       	<%
-      		if(request.getAttribute("usersLists")!=null){
-      			UsersLists usersLists = (UsersLists)request.getAttribute("usersLists");
+      		if(session.getAttribute("usersLists")!=null){
+      			UsersLists usersLists = (UsersLists)session.getAttribute("usersLists");
       			ArrayList<Lista> liste = usersLists.getAllUsersLists();
       			
       			for(int i = 0;i<liste.size();i++){		

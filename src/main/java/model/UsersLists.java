@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class UsersLists{
 	
@@ -16,6 +17,15 @@ public class UsersLists{
 	
 	public Lista getUsersList(int i) {
 		return liste.get(i);
+	}
+	
+	public Lista getListaFromId(int id) {
+		for (int i = 0;i<liste.size();i++) {
+			if(liste.get(i).getId() == id) {
+				return liste.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public ArrayList<Lista> getAllUsersLists(){

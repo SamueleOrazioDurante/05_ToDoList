@@ -238,6 +238,25 @@ public boolean checkEmail(Utente user){
 		return check;
 	}
 	
+	public boolean addTodo(int id_lista) {
+		
+		Boolean check = false;
+		String query = "INSERT INTO `todo`(`id_lista`) VALUES ('"+id_lista+"')";
+		
+		try {
+			int res = conn.createStatement().executeUpdate(query);
+			if(res!=0)
+			{
+				check = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
+	
 	public int addLista(Lista lista, Utente user) {
 		
 		int id = -1;
@@ -271,5 +290,66 @@ public boolean checkEmail(Utente user){
 		}
 		
 		return id;
+	}
+	
+	public boolean deleteLista(int id_lista,Utente user) {
+		
+		Boolean check = false;
+		//query per ricavare tutti gli id delle todo collegate alla lista
+		String query = "SELECT `id_todo` FROM `todo` WHERE `id_lista` = '"+id_lista+"'";
+		
+		int id_utente = this.findUserID(user.getUsername());
+			System.out.print("ciaoiosonoqui");
+		try {
+			ResultSet ress = conn.createStatement().executeQuery(query);
+			while(ress.next())
+			{
+				System.out.print("ciaoiosonoqui1");
+				//per ogni todo eseguo una query per eleminarla
+				int id_todo = ress.getInt("id_todo");
+				this.deleteTodo(id_todo);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//dopo aver eliminato le todo procedo con la cancellazione della lista
+		query = "DELETE FROM `lista` WHERE `id_lista`='"+id_lista+"' AND `id_utente` = '"+id_utente+"'";
+
+		try {
+			int res = conn.createStatement().executeUpdate(query);
+			if(res!=0) {
+				check = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return check;
+	}
+	
+	public boolean deleteTodo(int id_todo) {
+		
+		Boolean check = false;
+		
+		//dopo aver eliminato le todo procedo con la cancellazione della lista
+		String query = "DELETE FROM `todo` WHERE `id_todo` = '"+id_todo+"'";
+
+		try {
+			int res = conn.createStatement().executeUpdate(query);
+			if(res!=0) {
+				check = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return check;
 	}
 }

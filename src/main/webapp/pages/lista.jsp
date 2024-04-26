@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*"%>
+<%@ page import = "model.UsersLists,model.Lista,model.Todo"%>
+
+<% 
+
+%>
+
 <!DOCTYPE html>
-<html class="h-full bg-white dark:bg-black">
+<html class="h-full bg-white dark:bg-gray-900">
 <head>
 <meta charset="UTF-8">
 <title> Noirell </title>
 <link rel="icon" href="img/Logo.png" type="image/png" />
-<link rel="stylesheet" href="style/index.css">
+<link rel="stylesheet" href="style/lista.css">
 </head>
 <body class="h-full">
 
@@ -23,13 +30,7 @@
             />
           </a>
         </div>
-          <button
-            type="button"
-            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-            id="user-menu-button"
-            aria-expanded="false"
-            data-dropdown-toggle="dropdown"
-          >
+        
           	<a href="account.jsp" class="flex mr-4">
               <!-- PROFILO UTENTE ( ICONA IN ALTO A DX ) -->
             <img
@@ -38,7 +39,6 @@
               alt="user photo"
             />
             </a>
-          </button>
             <!-- INIZIO DROPDOWN  -->
 
         </div>
@@ -46,12 +46,13 @@
     </nav>
 
     <!-- INIZIO SIDEBAR -->
-
+	
+	
     <aside
       class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidenav"
       id="drawer-navigation"
-    >
+    ><br>
       <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
         <ul class="space-y-2">
         <!-- INIZIO SIDEBAR LISTA -->
@@ -139,10 +140,10 @@
 
 <!--INIZIO PARTE LISTE  -->
     <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900">
-		
+		<br>
 		<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-    <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+    <thead class="bg-gray-50 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="p-4">
             <div class="flex items-center">
@@ -150,17 +151,70 @@
                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
             </div>
         </th>
-        <th scope="col" class="px-6 py-3">Titolo</th>
-        <th scope="col" class="px-6 py-3">Descrizione</th>
+        <th scope="col" class="px-6 py-3">TITOLO</th>
+        <th scope="col" class="px-6 py-3">DESCRIZIONE</th>
         <th scope="col" class="px-3 py-3">
           <span class="sr-only">Modifica</span>
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th scope="col" class="px-3 py-3 text-right">
+                    
+          <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Azioni <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 text-center">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#" onclick="addTodo();return false;" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Aggiungi una todo</a>
+                </li>
+                <li>
+                  <a href="#" onclick="deleteLista();return false;" class="block px-4 py-2 text-red-400 hover:bg-gray-100 dark:text-red-600 dark:hover:bg-gray-600">Elimina la lista</a>
+                </li>
+              </ul>
+          </div>
+
           <span class="sr-only">Rimuovi</span>
         </th>
       </tr>
     </thead>
     <tbody>
+    
+    <%
+    	UsersLists usersLists = (UsersLists)session.getAttribute("usersLists");
+    	int id_lista= Integer.parseInt(request.getParameter("id"));
+    %>
+    <input type="hidden" id="id_lista" name="id_lista" value="<%= id_lista%>"></input>
+    <%
+    	Lista lista = usersLists.getListaFromId(id_lista);
+    	ArrayList<Todo> todos = lista.getAllTodos();
+    	
+    	for(int i = 0; i < todos.size();i++){
+    
+    %>
+    
+    <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
+        <td class="w-4 p-4">
+            <div class="flex items-center">
+                <input value=<%=todos.get(i).getIsDone() %>id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+            </div>
+        </td>
+        <th scope="row" class=" px-6 py-4 font-medium text-gray-900 dark:text-white"><%=todos.get(i).getTitolo() %></th>
+        <td class="px-6 py-4 whitespace-nowrap"><%=todos.get(i).getDescrizione() %></td>
+        <td class="px-1 py-4 text-right">
+          <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Modifica</a>
+        </td>
+        <td class="px-1 py-4 text-center">
+          <a href="#" class="font-medium text-red-600 hover:underline dark:text-red-500">Rimuovi</a>
+        </td>
+      </tr>
+    
+    <%
+    	}
+    %>
+    <!--   TEMPLATE
       <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
         <td class="w-4 p-4">
             <div class="flex items-center">
@@ -177,16 +231,31 @@
           <a href="#" class="font-medium text-red-600 hover:underline dark:text-red-500">Rimuovi</a>
         </td>
       </tr>
+    -->
+    
     </tbody>
   </table>
+<br><br><br><br>
 </div>
-		
-
-   
     </main>
   </div>
   
+  <script>
+  	
+	  function addTodo(){
+		  //faccio una chiamata GET alla servlet incaricata all`aggiunta di una todo
+		  let id_lista = document.getElementById("id_lista").value;
+		  window.location.href = "../addTodo?id_lista="+id_lista;
+	  }
+	  
+	  function deleteLista(){
+		  //faccio una chiamata GET alla servlet incaricata alla rimozione della lista
+		  let id_lista = document.getElementById("id_lista").value;
+		  window.location.href = "../deleteLista?id_lista="+id_lista;
+	  }
   
+  </script>
+  <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 
 </body>
 </html>

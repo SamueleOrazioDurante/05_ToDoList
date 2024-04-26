@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.AddListaBean;
+import model.AddTodoBean;
 import model.UsersLists;
 import model.Lista;
 
 /**
- * Servlet implementation class addLista
+ * Servlet implementation class addTodo
  */
-@WebServlet("/addLista")
-public class addLista extends HttpServlet {
+@WebServlet("/addTodo")
+public class addTodo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati delle liste
-    private AddListaBean addLista;  
+    private AddTodoBean addTodo;  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addLista() {
+    public addTodo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +33,34 @@ public class addLista extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// istanzio il bean di login
-		addLista = new AddListaBean();
+		// istanzio il bean di addTodo
+		addTodo = new AddTodoBean();
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//prendo gli input del form di input lista
-		String titolo = request.getParameter("titolo");
-		System.out.print("partita");
+		//prendo gli input della richiesta derivata dal js
+		int id_lista = Integer.parseInt(request.getParameter("id_lista"));
 		HttpSession session = request.getSession(false);
-		String username = (String)session.getAttribute("username");
-		//richiamo il metodo del Bean che procederà a creare un oggetto user e lista che passerà al DAO che si occuperà di aggiungerli ad database e a restituire l`id della lista
-		Lista lista = addLista.addLista(titolo,username);
+		//prendo l`attributo username che userò dopo per aggiornare l`arraylist di liste
+		String username = (String)session.getAttribute("username"); 
 		
-		//controllo che l`id sia presente
-		if(lista.getId() != -1)
+		//richiamo il metodo del Bean che passerà al DAO l`id della lista e creerà una nuovo todo
+		//controllo che l`inserimento sia stato effettuato
+		if(addTodo.addTodo(id_lista))
 		{	
-			UsersLists usersLists = addLista.fetchUsersLists(username);
+			UsersLists usersLists = addTodo.fetchUsersLists(username);
 			session.setAttribute("usersLists", usersLists);
-			System.out.println(usersLists.toString());
-			//forward della richiesta alla pagina jsp principale
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			
+			//redirect alla pagina jsp della lista
+			response.sendRedirect("pages/lista.jsp?id="+id_lista);
 		}
 		else
 		{
 			//lancio un eccezione in caso di errore che verrà gestita dalla pagina ErrorPage.jsp
-			throw new ServletException("addLista");
+			throw new ServletException("addTodo");
 		}
 	}
 
