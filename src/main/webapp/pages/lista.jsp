@@ -207,7 +207,7 @@
           <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Modifica</a>
         </td>
         <td class="px-1 py-4 text-center">
-          <a href="#" class="font-medium text-red-600 hover:underline dark:text-red-500">Rimuovi</a>
+          <a href="#" onclick="deleteTodo(<%=todos.get(i).getId() %>);return false;" class="font-medium text-red-600 hover:underline dark:text-red-500">Rimuovi</a>
         </td>
       </tr>
     
@@ -252,6 +252,12 @@
 		  //faccio una chiamata GET alla servlet incaricata alla rimozione della lista
 		  let id_lista = document.getElementById("id_lista").value;
 		  window.location.href = "../deleteLista?id_lista="+id_lista;
+	  }
+	  
+	  function deleteTodo(id_todo){
+		  //faccio una chiamata GET alla servlet incaricata alla rimozione del todo
+		  let id_lista = document.getElementById("id_lista").value;
+		  window.location.href = "../deleteTodo?id_todo="+id_todo+"&"+"id_lista="+id_lista;
 	  }
   
   </script>

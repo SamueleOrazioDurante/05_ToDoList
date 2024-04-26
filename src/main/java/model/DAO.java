@@ -299,15 +299,13 @@ public boolean checkEmail(Utente user){
 		String query = "SELECT `id_todo` FROM `todo` WHERE `id_lista` = '"+id_lista+"'";
 		
 		int id_utente = this.findUserID(user.getUsername());
-			System.out.print("ciaoiosonoqui");
 		try {
 			ResultSet ress = conn.createStatement().executeQuery(query);
 			while(ress.next())
 			{
-				System.out.print("ciaoiosonoqui1");
 				//per ogni todo eseguo una query per eleminarla
 				int id_todo = ress.getInt("id_todo");
-				this.deleteTodo(id_todo);
+				this.deleteTodo(id_todo,null,false);
 			}
 			
 		} catch (SQLException e) {
@@ -332,12 +330,19 @@ public boolean checkEmail(Utente user){
 		return check;
 	}
 	
-	public boolean deleteTodo(int id_todo) {
+	public boolean deleteTodo(int id_todo,Utente user, Boolean isExternal) {
 		
 		Boolean check = false;
+		System.out.println(id_todo);
+		String query;
 		
-		//dopo aver eliminato le todo procedo con la cancellazione della lista
-		String query = "DELETE FROM `todo` WHERE `id_todo` = '"+id_todo+"'";
+		if(isExternal) {
+			int id_utente = this.findUserID(user.getUsername());
+			//query più complessa per verificare l`autenticità della richiesta (solo chi è proprietario della todo può eliminarla)
+			query = "DELETE `todo` FROM `todo` INNER JOIN lista ON lista.id_lista=todo.id_lista WHERE `id_todo` = '"+id_todo+"' AND lista.id_utente = '"+id_utente+"';";
+		}else {
+			query = "DELETE FROM `todo` WHERE `id_todo` = '"+id_todo+"'";
+		}
 
 		try {
 			int res = conn.createStatement().executeUpdate(query);
