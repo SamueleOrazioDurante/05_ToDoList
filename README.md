@@ -1,5 +1,5 @@
 
-![Logo](#)
+![Logo](https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/Logo.jpeg)
 
 # 📝 Noirel
 
@@ -17,11 +17,11 @@ Andare alla sezione "Release" di questa repository chiamata x.x-Noirell e scaric
 
 Importare il database "TPSITToDoList.sql" all`interno della pagina di MySql (nel db deve anche essere presente un utente con privilegi di amministratore con nome utente: admin e password: admin).
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/mysql.png" height="400" width="800">
 
 Procedere infine con il deploy dell'applicazione tramite tomcat, importando il file "05_ToDoList.war", procedendo con l'avvio dell'applicazione.
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/tomcat.png" height="400" width="800">
 
 A questo punto andare sulla pagina [localhost](http://localhost:8080/05_ToDoList) e procedere con l'utilizzo dell'applicazione!
 
@@ -29,15 +29,15 @@ A questo punto andare sulla pagina [localhost](http://localhost:8080/05_ToDoList
 
 Procedere dunque con la registrazione di un nuovo account e successivamente il login all`interno della piattaforma.
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/login.png" height="400" width="800">
 
 #### 🗣️ Utilizzo
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/index.png" height="400" width="800">
 
 Una volta eseguito l`accesso sarà possibile navigare tra le proprie liste, crearne una nuova, visualizzare l`elenco di todo presenti in una lista, eliminare, modificare e checkare/uncheckare una todo o cancellare la lista stessa.
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/lista.png" height="400" width="800">
 
 ## 🧑 Autori
 
