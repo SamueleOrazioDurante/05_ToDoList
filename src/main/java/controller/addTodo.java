@@ -16,7 +16,6 @@ import model.Lista;
 /**
  * Servlet implementation class addTodo
  */
-@WebServlet("/addTodo")
 public class addTodo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati delle liste

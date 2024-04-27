@@ -15,7 +15,6 @@ import model.UsersLists;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati dell`autenticazione

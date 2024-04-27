@@ -16,7 +16,6 @@ import model.ResetPasswordBean;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/resetPassword")
 public class resetPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati dell`autenticazione

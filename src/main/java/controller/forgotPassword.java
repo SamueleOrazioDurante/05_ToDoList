@@ -16,7 +16,6 @@ import model.ForgotPasswordBean;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/forgotPassword")
 public class forgotPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati dell`autenticazione
