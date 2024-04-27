@@ -9,9 +9,9 @@ Questo progetto è stato sviluppato in seguito a un compito assegnatoci dal prof
 
 ### 🗄️ Server
 
-Prima di procedere è necessario avere installato sul proprio dispositivo sia PhpMyAdmin sia Tomcat, oltre ovviamente una versione di Java superiore a Java 8 (nell`esempio dimostrativo viene utilizzato il JDK22). Il metodo più semplice per averli è accedere a questo sito [XAMPP](https://www.apachefriends.org/download.html), successivamente scaricare ed installare l`ultima versione. Una volta fatto tutto ciò aprire il pannello di controllo di XAMPP e abilitare le sezioni "Apache", "Phpmyadmin" e "Tomcat" come nello screenshot seguente.
+Prima di procedere è necessario avere installato sul proprio dispositivo sia PhpMyAdmin sia Tomcat, oltre ovviamente una versione di Java superiore a Java 8 (nell'esempio dimostrativo viene utilizzato il JDK22). Il metodo più semplice per averli è accedere a questo sito [XAMPP](https://www.apachefriends.org/download.html), successivamente scaricare ed installare l`ultima versione. Una volta fatto tutto ciò aprire il pannello di controllo di XAMPP e abilitare le sezioni "Apache", "Phpmyadmin" e "Tomcat" come nello screenshot seguente.
 
-<img src="#" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/xampp.png" height="400" width="800">
 
 Andare alla sezione "Release" di questa repository chiamata x.x-Noirell e scaricare il file 05_ToDoList.war e il database TPSITToDoList.sql.
 
@@ -19,11 +19,11 @@ Importare il database "TPSITToDoList.sql" all`interno della pagina di MySql (nel
 
 <img src="#" height="400" width="800">
 
-Procedere infine con il deploy dell`applicazione tramite tomcat, importando il file "05_ToDoList.war", procedendo con l`avvio dell`applicazione.
+Procedere infine con il deploy dell'applicazione tramite tomcat, importando il file "05_ToDoList.war", procedendo con l'avvio dell'applicazione.
 
 <img src="#" height="400" width="800">
 
-A questo punto andare sulla pagine http://localhost:8080/05_ToDoList e procedere con l`utilizzo dell`applicazione!
+A questo punto andare sulla pagina [localhost](http://localhost:8080/05_ToDoList) e procedere con l'utilizzo dell'applicazione!
 
 #### 🔐 Login
 
