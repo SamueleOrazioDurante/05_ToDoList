@@ -47,8 +47,8 @@ Una volta eseguito l'accesso sarà possibile navigare tra le proprie liste, crea
 
 ## ✍️ Documentazione
 
-- [Presentazione](#)
-- [Guida al deploy (pdf) ](#)
+- [Presentazione](https://github.com/SamOraDur/05_ToDoList/blob/main/doc/NoriellPresentazione.pptx)
+- [Guida al deploy (pdf) ](https://github.com/SamOraDur/05_ToDoList/blob/main/doc/Manuale.pdf)
 
 ## ❌ Cose che non siamo riusciti a concludere in tempo
 
