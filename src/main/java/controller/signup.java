@@ -14,7 +14,6 @@ import model.SignupBean;
 /**
  * Servlet implementation class login
  */
-@WebServlet("/signup")
 public class signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//bean usato per accedere ai dati della registrazione
