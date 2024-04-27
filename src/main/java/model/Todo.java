@@ -21,6 +21,18 @@ public class Todo{
 		this.descrizione = descrizione;
 		this.isDone = isDone;
 	}
+	
+	public Todo(int id, String titolo, String descrizione) {
+		super();
+		this.id = id;
+		this.titolo = titolo;
+		this.descrizione = descrizione;
+	}
+	
+	public Todo(int id) {
+		super();
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;

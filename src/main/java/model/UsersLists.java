@@ -28,6 +28,18 @@ public class UsersLists{
 		return null;
 	}
 	
+	public Todo getTodoFromId(int id_lista,int id_todo) {
+		Lista lista = this.getListaFromId(id_lista);
+		ArrayList<Todo> todos = lista.getAllTodos();
+		
+		for (int i = 0;i<todos.size();i++) {
+			if(todos.get(i).getId() == id_todo) {
+				return todos.get(i);
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<Lista> getAllUsersLists(){
 		return liste;
 	}

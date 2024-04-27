@@ -15,7 +15,7 @@ public class DeleteTodoBean implements java.io.Serializable{
 		boolean check;
 		
 		Utente user = new Utente(username,true);
-		//mando l`id lista al dao che provvederà alla rimozione della todo interessata in seguito a un controllo di appartenenza della todo
+		//mando l`id todo al dao che provvederà alla rimozione della todo interessata in seguito a un controllo di appartenenza della todo stessa
 		check = theDAO.deleteTodo(id_todo,user,true);
 		
 		return check;

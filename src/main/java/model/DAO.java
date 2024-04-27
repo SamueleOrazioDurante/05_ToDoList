@@ -355,4 +355,69 @@ public boolean checkEmail(Utente user){
 		
 		return check;
 	}
+	
+	public boolean modifyTodo(int id_lista,Utente user,Todo todo) {
+		
+		Boolean check = false;
+		
+		int id_utente = this.findUserID(user.getUsername());
+		int id_todo = todo.getId();
+		
+		//prima query di controllo per verifica la proprietà della todo
+		String query = "SELECT `id_todo` FROM `todo` INNER JOIN lista ON lista.id_lista=todo.id_lista INNER JOIN utente ON lista.id_utente=utente.id_utente WHERE `id_todo` = '"+id_todo+"' AND lista.id_lista = '"+id_lista+"' AND utente.id_utente = '"+id_utente+"'";
+
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				//se esiste almeno un risultato allora procedo con l`eliminazione
+				query = "UPDATE `todo` SET `titolo_todo`='"+todo.getTitolo()+"',`descrizione_todo`='"+todo.getDescrizione()+"' WHERE `id_todo` = '"+id_todo+"'";
+				int ress = conn.createStatement().executeUpdate(query);
+				if(ress!=0) {
+					check = true;
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
+	
+public boolean checkTodo(int id_lista,Utente user,Todo todo) {
+		
+		Boolean check = false;
+		
+		int id_utente = this.findUserID(user.getUsername());
+		int id_todo = todo.getId();
+		
+		//prima query di controllo per verifica la proprietà della todo
+		String query = "SELECT `isDone` FROM `todo` INNER JOIN lista ON lista.id_lista=todo.id_lista INNER JOIN utente ON lista.id_utente=utente.id_utente WHERE `id_todo` = '"+id_todo+"' AND lista.id_lista = '"+id_lista+"' AND utente.id_utente = '"+id_utente+"'";
+
+		try {
+			ResultSet res = conn.createStatement().executeQuery(query);
+			if(res.next())
+			{
+				//se esiste almeno un risultato allora procedo con l`update invertendo il valore presente nel database
+				int isDone = 1;
+				if(res.getBoolean("isDone")) {
+					isDone = 0;
+				}
+				
+				query = "UPDATE `todo` SET `isDone`='"+isDone+"' WHERE `id_todo` = '"+id_todo+"'";
+				int ress = conn.createStatement().executeUpdate(query);
+				if(ress!=0) {
+					check = true;
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
 }

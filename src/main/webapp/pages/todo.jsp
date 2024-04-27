@@ -1,22 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.io.*,java.util.*"%>
-<%@ page import = "model.UsersLists,model.Lista"%>
-
-<% 
-  //controllo se l`utente è loggato (quindi sessione attiva), in caso contrario lo mando nella pagina di login 
-  if((session.getAttribute("username")==null)){
-    response.sendRedirect("pages/login.jsp");
-  }  
-%>
+<%@ page import = "model.UsersLists,model.Lista,model.Todo"%>
 
 <!DOCTYPE html>
 <html class="h-full bg-white dark:bg-gray-900">
 <head>
 <meta charset="UTF-8">
 <title> Noirell </title>
-<link rel="icon" href="pages/img/Logo.png" type="image/png" />
-<link rel="stylesheet" href="pages/style/index.css">
+<link rel="icon" href="img/Logo.png" type="image/png" />
+<link rel="stylesheet" href="style/todo.css">
 </head>
 <body class="h-full">
 
@@ -25,20 +18,20 @@
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
               <!-- INIZIO NAV BAR CON LOGO E NOME APPLICAAZIONE -->
-          <a href="#" class="flex items-center justify-between mr-4">
+          <a href="../index.jsp" class="flex items-center justify-between mr-4">
             <img
-              src="pages/img/Logo.png"
+              src="img/Logo.png"
               class="mr-3 h-8"
               style="width: 4rem; height: 4rem;"
             />
           </a>
         </div>
         
-          	<a href="pages/account.jsp" class="flex mr-4">
+          	<a href="account.jsp" class="flex mr-4">
               <!-- PROFILO UTENTE ( ICONA IN ALTO A DX ) -->
             <img
               class="w-8 h-8 rounded-full"
-              src="pages/img/noUserImage.png"
+              src="img/noUserImage.png"
               alt="user photo"
             />
             </a>
@@ -61,7 +54,7 @@
         <!-- INIZIO SIDEBAR LISTA -->
           <li>     
             <a
-              href="#"
+              href="../index.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
              <!-- IMMAGINE LISTA -->
@@ -86,7 +79,7 @@
           <!-- INIZIO SIDEBAR ACCOUNT -->
           <li>     
             <a
-              href="pages/account.jsp"
+              href="account.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
             
@@ -113,7 +106,7 @@
           <!-- INIZIO SIDEBAR LOGOUT -->
           <li>     
             <a
-              href="pages/logout.jsp"
+              href="logout.jsp"
               class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
             
@@ -140,55 +133,38 @@
         </div>
       </div>
     </aside>
+    
+    <%
+    	UsersLists usersLists = (UsersLists)session.getAttribute("usersLists");
+    	int id_lista= Integer.parseInt(request.getParameter("id_lista"));
+    	int id_todo= Integer.parseInt(request.getParameter("id_todo"));
+    	Todo todo = usersLists.getTodoFromId(id_lista,id_todo);
+    
+    %>
 
 <!--INIZIO PARTE LISTE  -->
-    <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900"><br>
     
-      <div class="grid grid-cols-4 gap-4">
-      
-      	<%
-      		if(session.getAttribute("usersLists")!=null){
-      			UsersLists usersLists = (UsersLists)session.getAttribute("usersLists");
-      			ArrayList<Lista> liste = usersLists.getAllUsersLists();
-      			
-      			for(int i = 0;i<liste.size();i++){		
-      	
-      	
-      	%>
-        <a href="pages/lista.jsp?id=<%=liste.get(i).getId() %>" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-        <img class="w-96" src="pages/img/lista.webp" alt="ListsImage" /><br>
-        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%=liste.get(i).getTitolo() %></h5>
-        </a>
-        
-    	<% }}%>
-
-        <details class="open">
-            <!-- Parte visibile (bottone) -->
-            <summary 
-                <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800  dark:border-gray-700 dark:hover:bg-gray-700">
-                  <img class="w-96" src="pages/img/addLista.jpg" alt="ListsImage" /><br>
-                  <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Crea una nuova lista 😊</h5>
-                </a>
-            </summary>
-
-            <!-- Parte invisibile -->
-            <div class="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800 my-5 mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  inset-0 rounded-2xl w-[40%] h-[27%]">
-              <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Crea una nuova lista</h1>
-                <form class="space-y-4 md:space-y-6" action="addLista" method="POST">
-                  <div>
-                    <label for="titolo" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Titolo</label>
-                    <input type="text" name="titolo" id="titolo" class="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" placeholder="Lista1" required="" />
-                  </div>
-                  <div class="grid grid-cols-2 gap-4">
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Crea</button>
-                    <button onclick="document.querySelector('details').removeAttribute('open')" type="button" class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Chiudi</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-        </details>
+    <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900">
+    <br>
+    <a href="lista.jsp?id=<%=id_lista %>">
+	    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+	    <svg xmlns="http://www.w3.org/2000/svg" width="1rem" class="mx-2" height="1rem" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9.059V6.5a1.001 1.001 0 0 0-1.707-.708L4 12l6.293 6.207a.997.997 0 0 0 1.414 0A.999.999 0 0 0 12 17.5v-2.489c2.75.068 5.755.566 8 3.989v-1c0-4.633-3.5-8.443-8-8.941"/></svg>
+	    </button>
+     </a>
+        <br><br><br><br>
+    <form class="max-w-md mx-auto" method="POST" action="../modifyTodo">
+      <input type="hidden" id="id_lista" name="id_lista" value="<%= id_lista%>"></input>
+      <input type="hidden" id="id_todo" name="id_todo" value="<%= id_todo%>"></input>
+      <div class="relative z-0 w-full mb-5 group">
+          <input value="<%=todo.getTitolo() %>" type="text" name="titolo" id="titolo" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+          <label for="titolo" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Titolo</label>
       </div>
+      <div class="relative z-0 w-full mb-5 group">
+          <textarea id="descrizione" name="descrizione" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descrizione"><%if(todo.getDescrizione()!=null){out.print(todo.getDescrizione());}%></textarea>
+      </div>
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifica</button>
+    </form>
+
     </main>
   </div>
 

@@ -141,7 +141,7 @@
 <!--INIZIO PARTE LISTE  -->
     <main class="p-4 md:ml-64 h-auto pt-20 dark:bg-gray-900">
 		<br>
-		<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+		<div class="relative overflow-x-auto sm:rounded-lg">
   <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
     <thead class="bg-gray-50 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -197,14 +197,14 @@
     <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
         <td class="w-4 p-4">
             <div class="flex items-center">
-                <input value=<%=todos.get(i).getIsDone() %>id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <input onclick="alterDBValue(<%=todos.get(i).getId() %>)" <% if(todos.get(i).getIsDone()){out.print("checked");} %> id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
             </div>
         </td>
         <th scope="row" class=" px-6 py-4 font-medium text-gray-900 dark:text-white"><%=todos.get(i).getTitolo() %></th>
         <td class="px-6 py-4 whitespace-nowrap"><%=todos.get(i).getDescrizione() %></td>
         <td class="px-1 py-4 text-right">
-          <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Modifica</a>
+          <a href="<%= "todo.jsp?id_lista="+id_lista+"&"+"id_todo="+todos.get(i).getId()%>" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Modifica</a>
         </td>
         <td class="px-1 py-4 text-center">
           <a href="#" onclick="deleteTodo(<%=todos.get(i).getId() %>);return false;" class="font-medium text-red-600 hover:underline dark:text-red-500">Rimuovi</a>
@@ -258,6 +258,12 @@
 		  //faccio una chiamata GET alla servlet incaricata alla rimozione del todo
 		  let id_lista = document.getElementById("id_lista").value;
 		  window.location.href = "../deleteTodo?id_todo="+id_todo+"&"+"id_lista="+id_lista;
+	  }
+	  
+	  function alterDBValue(id_todo){
+		  //faccio una chiamata GET alla servlet incaricata al cambio valore della check
+		  let id_lista = document.getElementById("id_lista").value;
+		  window.location.href = "../checkTodo?id_todo="+id_todo+"&"+"id_lista="+id_lista;
 	  }
   
   </script>
