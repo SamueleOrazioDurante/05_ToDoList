@@ -29,7 +29,7 @@ A questo punto andare sulla pagina [localhost](http://localhost:8080/05_ToDoList
 
 Procedere dunque con la registrazione di un nuovo account e successivamente il login all`interno della piattaforma.
 
-<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/login.png" height="800" width="400">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/login.png">
 
 #### 🗣️ Utilizzo
 
