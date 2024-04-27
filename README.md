@@ -1,7 +1,7 @@
 
 ![Logo](https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/Logo.jpeg)
 
-# 📝 Noirel
+# 📝 Noirell
 
 Questo progetto è stato sviluppato in seguito a un compito assegnatoci dal prof. **** ****** sviluppato in gruppi da 2 persone (contributi linkati alla fine della pagina) e tramite l'utilizzo dell'argomento teorico svolto sul *MVC in Java* e l'utilizzo di TailwindCSS.
 
@@ -29,13 +29,13 @@ A questo punto andare sulla pagina [localhost](http://localhost:8080/05_ToDoList
 
 Procedere dunque con la registrazione di un nuovo account e successivamente il login all`interno della piattaforma.
 
-<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/login.png" height="400" width="800">
+<img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/login.png" height="800" width="400">
 
 #### 🗣️ Utilizzo
 
 <img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/index.png" height="400" width="800">
 
-Una volta eseguito l`accesso sarà possibile navigare tra le proprie liste, crearne una nuova, visualizzare l`elenco di todo presenti in una lista, eliminare, modificare e checkare/uncheckare una todo o cancellare la lista stessa.
+Una volta eseguito l'accesso sarà possibile navigare tra le proprie liste, crearne una nuova, visualizzare l'elenco di todo presenti in una lista, eliminare, modificare e checkare/uncheckare una todo o cancellare la lista stessa.
 
 <img src="https://github.com/SamOraDur/05_ToDoList/blob/main/doc/img/lista.png" height="400" width="800">
 
@@ -50,7 +50,7 @@ Una volta eseguito l`accesso sarà possibile navigare tra le proprie liste, crea
 - [Presentazione](#)
 - [Guida al deploy (pdf) ](#)
 
-## ✍️ Cose che non siamo riusciti a concludere in tempo
+## ❌ Cose che non siamo riusciti a concludere in tempo
 
 - Pagina account per aggiungere o modificare i propri dati e inserire una foto profilo
 - Visualizzazione della foto profilo in tutte le pagine dell`applicativo
